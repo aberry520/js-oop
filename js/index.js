@@ -4,7 +4,7 @@ const main = document.querySelector("main");
 
 function displayDOM(x) {
     const p = document.createElement("p");
-    p.innerText = x;
+    p.innerHTML = x;
     main.append(p);
 }
 
@@ -13,6 +13,7 @@ class Person {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.friends = [];
     }
 
     greet(otherPerson) {
@@ -21,8 +22,12 @@ class Person {
     drive(car) {
         return `${this.name} drives a ${car.print_info(car)}`;
     }
+    print_contact_info() {
+        return `${this.name}'s email: ${this.email}
+        <br>${this.name}'s phone number: ${this.phone}`;
+    }
 }
-const sonny = new Person("Sonny", "sonny@hotmail.com", "483-485-3456");
+const sonny = new Person("Sonny", "sonny@hotmail.com", "483-485-4984");
 const jordan = new Person("Jordan", "jordan@aol.com", "495-586-3456");
 
 displayDOM(jordan.greet(sonny));
@@ -45,3 +50,7 @@ const car2 = new Vehicle("BMW", "330i", "2004");
 displayDOM(car1.print_info());
 displayDOM(jordan.drive(car2));
 displayDOM(sonny.drive(car1));
+displayDOM(sonny.print_contact_info());
+jordan.friends.push(sonny);
+sonny.friends.push(jordan);
+displayDOM(jordan.friends.length);
