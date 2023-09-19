@@ -18,7 +18,9 @@ class Person {
     greet(otherPerson) {
         return `Hello ${otherPerson.name}, I am ${this.name}!`;
     }
-  
+    drive(car) {
+        return `${this.name} drives a ${car.print_info(car)}`;
+    }
 }
 const sonny = new Person("Sonny", "sonny@hotmail.com", "483-485-3456");
 const jordan = new Person("Jordan", "jordan@aol.com", "495-586-3456");
@@ -41,3 +43,5 @@ const car1 = new Vehicle("Volvo", "240", "1992");
 const car2 = new Vehicle("BMW", "330i", "2004");
 
 displayDOM(car1.print_info());
+displayDOM(jordan.drive(car2));
+displayDOM(sonny.drive(car1));
