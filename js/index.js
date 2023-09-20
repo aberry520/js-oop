@@ -2,7 +2,7 @@
 
 const main = document.querySelector("main");
 
-function displayDOM(x) {
+function displayDOM(x, y) {
     const p = document.createElement("p");
     p.innerHTML = x;
     main.append(p);
@@ -26,9 +26,24 @@ class Person {
         return `${this.name}'s email: ${this.email}
         <br>${this.name}'s phone number: ${this.phone}`;
     }
+    add_friend(friend){
+        this.friends.push(friend);
+    }
+    num_friends(){
+        displayDOM(`${this.name} Number of Friends:`);
+        return this.friends.length;
+    }
+    list_friends(){
+        displayDOM(`${this.name} Friend List:`);
+        this.friends.map(function(x){
+            console.log(x.name)
+            displayDOM(x.name);
+        })
+    }
 }
 const sonny = new Person("Sonny", "sonny@hotmail.com", "483-485-4984");
 const jordan = new Person("Jordan", "jordan@aol.com", "495-586-3456");
+const bob = new Person("Bob");
 
 displayDOM(jordan.greet(sonny));
 displayDOM(sonny.greet(jordan));
@@ -51,6 +66,11 @@ displayDOM(car1.print_info());
 displayDOM(jordan.drive(car2));
 displayDOM(sonny.drive(car1));
 displayDOM(sonny.print_contact_info());
-jordan.friends.push(sonny);
-sonny.friends.push(jordan);
-displayDOM(jordan.friends.length);
+// jordan.friends.push(sonny);
+// sonny.friends.push(jordan);
+jordan.add_friend(sonny);
+sonny.add_friend(jordan);
+jordan.add_friend(bob);
+displayDOM(sonny.friends[0].name);
+displayDOM(jordan.num_friends());
+jordan.list_friends();
